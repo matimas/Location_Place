@@ -5,7 +5,7 @@ const app = express();
 const path = require('path');
 // app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname,'../../practice-places-01-starting-setup/dist')));
+app.use(express.static(path.join(__dirname,'./client/dist')));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
