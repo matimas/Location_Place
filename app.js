@@ -3,9 +3,15 @@ const bodyParser = require('body-parser');
 const locationRoutes = require('./routes/location');
 const app = express();
 const path = require('path');
+const port =  process.env.PORT || 8080;
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname,'./client/dist')));
+//app.use(express.static(__dirname));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'index.html'));
+});
+
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -17,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use(locationRoutes);
 
-app.listen(process.env.PORT || 3000);
+app.listen(port);
 
 // app.set('view engine','ejs');
 // app.set('views','views');
